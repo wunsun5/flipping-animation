@@ -1,0 +1,75 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    min-height: 100vh;
+}
+
+div{
+    --h: 305;
+    min-height: 2em;
+    min-width: 2em;
+    border: 1em double hsl(var(--h), 100%, 50%);
+    border-radius: calc(1em / (var(--i) + 1));
+    margin: 1em;
+    transform: rotateZ(.25turn) perspective(400vmin);
+    animation: spinner 60s 1s infinite ease-in-out;
+    animation-delay: calc(var(--i) * 1s);
+    transform-style: preserve-3d;
+    background: radial-gradient(
+        circle,
+        hsl(var(--h) 100% 50% / 0),
+        hsl(var(--h) 100% 50% / .1),
+        hsl(var(--h) 100% 50% / .3)
+    );
+}
+
+div > div{
+    --h: 280;
+}
+
+div > div > div{
+    --h: 210;
+}
+
+div > div > div > div{
+    --h: 120;
+    border-radius: 50%;
+}
+
+div > div > div >div > div{
+    --h: 50;
+}
+
+div > div > div > div > div > div{
+    --h: 10;
+    border-radius: 50%;
+
+}
+
+div > div::before, div > div::after{
+    content: '';
+    background-color: hsl(var(--h, 303), 100%, 50%);
+    position: absolute;
+    left: .9em;
+    width: 1.2em;
+    height: .3em;
+    top: 50%;
+    transform: translate(-240%, -50%);
+}
+
+div > div::after{
+    left: initial;
+    right: 0;
+    transform: translate(165%, -50%);
+}
+
+@keyframes spinner {
+    from{
+        transform: rotateZ(.25turn) perspective(600vmin) rotateX(0);
+    }
+    to{
+        transform: rotateZ(.25turn) perspective(200vmin) rotateX(8turn);
+    }
+}
